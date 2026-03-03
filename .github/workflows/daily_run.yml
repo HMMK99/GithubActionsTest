@@ -31,3 +31,11 @@ jobs:
       # 4. Run your script
       - name: Run main script
         run: python main.py
+    
+      - name: Commit and Push changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add mycsv.csv
+          git commit -m "Update daily CSV data [skip ci]"
+          git push
