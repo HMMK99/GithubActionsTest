@@ -3,7 +3,7 @@ name: Daily Python Job
 on:
   schedule:
     # This runs at 00:00 UTC every day (Cron syntax)
-    - cron: '15 0 * * *'
+    - cron: '30 13 * * *'
   workflow_dispatch: # This allows you to run it manually for testing
 
 jobs:
