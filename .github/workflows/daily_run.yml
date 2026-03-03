@@ -36,6 +36,11 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git add mycsv.csv
-          git commit -m "Update daily CSV data [skip ci]"
-          git push
+          # Only run if the file exists
+          if [ -f mycsv.csv ]; then
+            git add mycsv.csv
+            # Only commit if there are actually changes to the file
+            git diff --quiet && git diff --staged --quiet || (git commit -m "Update daily CSV data [skip ci]" && git push)
+          else
+            echo "No CSV file found to upload!"
+          fi
